@@ -68,7 +68,7 @@ debug: $(title).nes
 # makefile changes.
 dist: zip
 zip: $(title)-$(version).zip
-$(title)-$(version).zip: zip.in $(title).nes $(titlealt).nes README.md CHANGES.txt $(objdir)/index.txt
+$(title)-$(version).zip: zip.in $(title).nes $(titlealt).nes README.md CHANGES.txt $(objdir)/.gitkeep
 	zip -9 -u $@ -@ < $<
 
 # Build zip.in from the list of files in the Git tree
@@ -76,8 +76,8 @@ zip.in:
 	git ls-files | grep -e "^[^.]" > $@
 	echo zip.in >> $@
 
-$(objdir)/index.txt: makefile
-	echo Files produced by build tools go here, but caulk goes where? > $@
+$(objdir)/.gitkeep: makefile
+	echo https://www.freecodecamp.org/news/what-is-gitkeep/ > $@
 
 all: $(title).nes
 
